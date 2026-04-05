@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand Colors */
+  --color-on-tertiary-fixed-variant: #73004b;
+  --color-on-background: #262d4c;
+  --color-surface-container-lowest: #ffffff;
+  --color-inverse-on-surface: #949bc1;
+  --color-on-tertiary-fixed: #360021;
+  --color-primary-fixed-dim: #559bef;
+  --color-on-tertiary: #ffeff3;
+  --color-primary-container: #64a8fe;
+  --color-secondary-container: #d8caff;
+  --color-on-primary-fixed-variant: #00315d;
+  --color-secondary: #6448b2;
+  --color-surface: #f7f5ff;
+  --color-on-secondary-fixed: #3c1989;
+  --color-secondary-fixed: #d8caff;
+  --color-primary-fixed: #64a8fe;
+  --color-surface-dim: #cbd2ff;
+  --color-inverse-surface: #050b2a;
+  --color-surface-container-highest: #d6dbff;
+  --color-on-error-container: #570008;
+  --color-error-container: #fb5151;
+  --color-on-primary-container: #00284e;
+  --color-outline: #6e7599;
+  --color-on-error: #ffefee;
+  --color-primary: #005da7;
+  --color-tertiary-container: #ff8bc5;
+  --color-surface-bright: #f7f5ff;
+  --color-tertiary-fixed: #ff8bc5;
+  --color-on-secondary-container: #4f329d;
+  --color-secondary-fixed-dim: #ccbaff;
+  --color-surface-container-low: #f0efff;
+  --color-tertiary-fixed-dim: #f976ba;
+  --color-inverse-primary: #64a8fe;
+  --color-tertiary: #a02d70;
+  --color-on-surface: #262d4c;
+  --color-on-primary: #eef3ff;
+  --color-surface-container-high: #dde1ff;
+  --color-on-secondary: #f7f0ff;
+  --color-error: #b31b25;
+  --color-outline-variant: #a5abd2;
+  --color-on-surface-variant: #535a7c;
+  --color-on-tertiary-container: #630040;
+  --color-on-primary-fixed: #000613;
+  --color-background: #f7f5ff;
+  --color-on-secondary-fixed-variant: #593ca6;
+  --color-primary-dim: #005192;
+  --color-tertiary-dim: #912063;
+  --color-error-dim: #9f0519;
+  --color-surface-variant: #d6dbff;
+  --color-surface-container: #e4e7ff;
+  --color-secondary-dim: #583ba5;
+  --color-surface-tint: #005da7;
+
+  /* Border Radii */
+  --radius-default: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  /* Typography */
+  --font-headline: var(--font-plus-jakarta);
+  --font-body: var(--font-plus-jakarta);
+  --font-label: var(--font-plus-jakarta);
+  --font-display: var(--font-instrument-serif);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f7f5ff;
+  --foreground: #262d4c;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #eef4ff 0%, #c8d8f8 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+}
+
+.glass-island {
+  background: #ffffff;
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-island {
+    background: rgba(243, 243, 245, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.cloud-blob {
+  position: fixed;
+  background: white;
+  filter: blur(80px);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(var(--rot, 0deg));
+  }
+}
+
+.drift-slow {
+  animation: float 12s ease-in-out infinite;
+}
+
+.letter-animate span {
+  display: inline-block;
+}
+
+/* Universal Icon Spatial Animation */
+.animated-icon-container svg path,
+.animated-icon-container svg circle,
+.animated-icon-container svg rect,
+.animated-icon-container svg line,
+.animated-icon-container svg polyline,
+.animated-icon-container svg polygon,
+.animated-icon-container svg ellipse {
+  stroke-dasharray: 100;
+  stroke-dashoffset: var(--path-offset, 0);
 }

@@ -1,0 +1,24 @@
+Viewed page.tsx:1-15
+Viewed Hero.tsx:1-122
+
+I've brainstormed a set of **"Premium Spatial"** animation ideas for the Iconrift home page. These focus on depth, responsiveness, and highlighting the core technology—the animated vector paths.
+
+### **2. Magnetic Bento Grid**
+Elevate the current featured grid with "Magnetic" physics.
+- **The Feel**: Tactile and responsive.
+- **Behavior**: When the cursor enters a radius around a card, the card (and the icon inside) subtly "leans" and "pulls" towards the mouse. A soft glass light-refraction (a "sheen") follows the cursor trail.
+
+
+### **4. Dynamic Cursor "Glow" (The Flashlight)**
+A blurred, glassmorphic glow (blur + low opacity color) that follows the mouse with high inertia.
+- **The Feel**: Premium spatial depth.
+- **Behavior**: This "light" sits behind the UI elements, creating a "flashlight" effect as it passes behind the translucent glass cards, highlighting their texture and borders.
+
+### **5. Liquid "Alive" Eyebrow Pill**
+The "500+ icons" pill at the top can be more than a static tag.
+- **The Feel**: Fluid and energetic.
+- **Behavior**: A subtle "liquid fill" animation inside the pill that cycles through our brand colors (Indigo → Emerald → Rose), reflecting the "Icons that feel Alive" headline.
+
+---
+
+**Which of these would you like to see implemented first? I recommend starting with the "Orbiting Hero" and the "Scroll-Driven Redraw" to create that immediate 'WOW' factor.**
