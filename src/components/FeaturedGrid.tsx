@@ -1,7 +1,46 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+
+const TiltCard = ({ children }: { children: React.ReactNode }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="w-full h-full relative"
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const icons = [
   { name: 'Home', icon: 'home' },
@@ -32,7 +71,7 @@ const FeaturedGrid = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-20"
       >
-        <h2 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tight text-on-background mb-4">
+        <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-headline font-extrabold tracking-tight text-on-background mb-4">
           Handcrafted <span className="font-display italic font-normal">Precision</span>
         </h2>
         <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">
@@ -52,17 +91,21 @@ const FeaturedGrid = () => {
               delay: (i % 8) * 0.05,
               ease: [0.23, 1, 0.32, 1]
             }}
-            whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            className="glass-island aspect-square flex flex-col items-center justify-center gap-3 p-4 rounded-xl shadow-lg border border-white/40 hover:bg-white/80 transition-colors cursor-pointer group"
+            whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.2 } }}
+            className="perspective-1000 glass-island aspect-square rounded-xl shadow-lg border border-white/40 hover:bg-white/80 transition-colors cursor-pointer group"
           >
-            <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-              <span className="material-symbols-outlined text-[28px] text-slate-700 group-hover:text-primary transition-colors">
-                {item.icon}
-              </span>
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-600 transition-colors">
-              {item.name}
-            </span>
+            <TiltCard>
+              <div className="flex flex-col items-center justify-center gap-3 w-full h-full p-4" style={{ transform: "translateZ(50px)" }}>
+                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
+                  <span className="material-symbols-outlined text-[28px] text-slate-700 group-hover:text-primary transition-colors">
+                    {item.icon}
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-600 transition-colors">
+                  {item.name}
+                </span>
+              </div>
+            </TiltCard>
           </motion.div>
         ))}
       </div>

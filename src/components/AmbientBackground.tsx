@@ -10,21 +10,24 @@ const AmbientBackground = () => {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const scale1 = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+  const scale2 = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const scale3 = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.8, 0.4]);
 
   return (
     <>
       {/* Ambient Background Blobs */}
       <motion.div 
-        style={{ y: y1, opacity }}
+        style={{ y: y1, scale: scale1, opacity }}
         className="cloud-blob w-96 h-64 top-20 -left-20"
       ></motion.div>
       <motion.div 
-        style={{ y: y2, opacity }}
+        style={{ y: y2, scale: scale2, opacity }}
         className="cloud-blob w-[500px] h-[300px] bottom-10 right-0"
       ></motion.div>
       <motion.div 
-        style={{ y: y3, opacity: 0.4 }}
+        style={{ y: y3, scale: scale3, opacity: 0.4 }}
         className="cloud-blob w-72 h-72 top-1/2 left-1/3"
       ></motion.div>
 

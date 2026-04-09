@@ -54,7 +54,7 @@ const Hero = () => {
         </div>
         
         {/* Headline */}
-        <h1 className="text-6xl md:text-8xl font-headline font-extrabold tracking-tight text-on-background mb-8 leading-[0.9]">
+        <h1 className="text-[clamp(3.5rem,8vw,6rem)] font-headline font-extrabold tracking-tight text-on-background mb-8 leading-[0.9]">
           <span className="font-display italic font-normal text-slate-700">Icons that feel</span>
           <br />
           <span className="letter-animate">
@@ -76,7 +76,7 @@ const Hero = () => {
             Browse icons
           </button>
           <button className="px-10 py-5 rounded-full bg-white/40 backdrop-blur-md border border-white/40 text-on-background font-bold shadow-sm hover:bg-white/60 transition-all">
-            See pricing
+            View on Github
           </button>
         </div>
       </motion.section>

@@ -1,10 +1,15 @@
+"use client";
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const Navbar = () => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center px-8 py-3 w-[calc(100%-3rem)] max-w-7xl glass-island rounded-full shadow-2xl font-body text-sm font-medium tracking-tight border border-white/40">
       <Link href="/" className="text-xl font-black tracking-tighter text-on-background flex items-center gap-2 before:w-2 before:h-2 before:bg-primary before:rounded-full">
-        Iconrift
+        <motion.span whileTap={{ scale: 0.9, filter: "drop-shadow(0px 0px 8px var(--color-primary-fixed))" }} className="inline-block transition-transform cursor-pointer">
+          Iconrift
+        </motion.span>
       </Link>
       
       <div className="hidden md:flex gap-8 items-center">
@@ -15,6 +20,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
+        <ThemeSwitcher />
         <div className="relative hidden sm:block">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/40 text-[18px]">search</span>
           <input 
